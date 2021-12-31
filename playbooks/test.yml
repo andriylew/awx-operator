@@ -1,0 +1,17 @@
+---
+- name: Backup AWX
+  hosts: localhost
+  k8s:
+    defintion:
+    apiVersion: awx.ansible.com/v1beta1
+    kind: AWXBackup
+    metadata:
+      name: towerbackup-2021-12-29
+      namespace: awx
+    spec:
+      deployment_name: test-tower
+      nodeSelector:
+        od-application: awx
+        od-os: linux
+
+  gather_facts: false
